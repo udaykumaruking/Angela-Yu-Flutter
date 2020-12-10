@@ -17,7 +17,15 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.teal,
         body: SafeArea(
           // To view Challenge uncomment child: Challenge() line and comment ................
-          child: Challenge(),
+          // child: Challenge(),
+          child: Column(
+            children: [
+              CircleAvatar(
+                child: Image.asset('images/abc.jpg'),
+              ),
+              Text('Name Here')
+            ],
+          ),
         ),
       ),
     );
