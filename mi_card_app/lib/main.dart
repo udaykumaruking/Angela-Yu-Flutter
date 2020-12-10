@@ -21,9 +21,27 @@ class MyApp extends StatelessWidget {
           child: Column(
             children: [
               CircleAvatar(
-                child: Image.asset('images/abc.jpg'),
+                radius: 50,
+                backgroundImage: AssetImage('images/abc.jpg'),
               ),
-              Text('Name Here')
+              Text(
+                'Name Here',
+                style: TextStyle(
+                  fontFamily: 'Pacifico',
+                  fontSize: 40,
+                  color: Colors.white,
+                ),
+              ),
+              Text(
+                'Caption/ Role',
+                style: TextStyle(
+                  fontFamily: 'SourceSansPro',
+                  fontSize: 20,
+                  color: Colors.teal[100],
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 2.5,
+                ),
+              )
             ],
           ),
         ),
