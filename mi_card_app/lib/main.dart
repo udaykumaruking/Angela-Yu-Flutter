@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
           // To view Challenge uncomment child: Challenge() line and comment ................
           // child: Challenge(),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CircleAvatar(
                 radius: 50,
@@ -41,6 +42,53 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2.5,
                 ),
+              ),
+              SizedBox(
+                height: 30,
+                width: 150,
+                child: Divider(
+                  color: Colors.teal.shade100,
+                ),
+              ),
+              Card(
+                color: Colors.white,
+                margin: EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 25,
+                ),
+                child: ListTile(
+                    leading: Icon(
+                      Icons.phone,
+                      // size: 15,
+                      color: Colors.teal,
+                    ),
+                    title: Text(
+                      '+91 99126687803',
+                      style: TextStyle(
+                          color: Colors.teal.shade900,
+                          fontFamily: 'SourceSansPro',
+                          fontSize: 20),
+                    )),
+              ),
+              Card(
+                color: Colors.white,
+                margin: EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 25,
+                ),
+                child: ListTile(
+                    leading: Icon(
+                      Icons.mail,
+                      // size: 15,
+                      color: Colors.teal,
+                    ),
+                    title: Text(
+                      'udaykumaruking@gmail.com',
+                      style: TextStyle(
+                          color: Colors.teal.shade900,
+                          fontFamily: 'SourceSansPro',
+                          fontSize: 20),
+                    )),
               )
             ],
           ),
