@@ -15,9 +15,41 @@ void main() {
   );
 }
 
-class DicePage extends StatelessWidget {
+class DicePage extends StatefulWidget {
+  @override
+  _DicePageState createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+  int leftDiceVal = 1;
+  int rightDiceVal = 4;
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(
+      child: Row(
+        children: [
+          Expanded(
+            child: FlatButton(
+              onPressed: () {
+                setState(() {
+                  leftDiceVal = 5;
+                  rightDiceVal = 4;
+                });
+                // print('Left Button Got Pressed');
+              },
+              child: Image.asset('images/dice$leftDiceVal.png'),
+            ),
+          ),
+          Expanded(
+            child: FlatButton(
+              onPressed: () {
+                // print('Right Button Got Pressed');
+              },
+              child: Image.asset('images/dice$rightDiceVal.png'),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
