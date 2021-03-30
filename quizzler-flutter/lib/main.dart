@@ -30,6 +30,31 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
+  void checkAnswer(bool userPickedValue) {
+    bool correctAnswer = quizBrain.getAnswerBool();
+
+    if (userPickedValue == correctAnswer) {
+      // print('Right');
+      scoreKeeper.add(
+        Icon(
+          Icons.check,
+          color: Colors.green,
+        ),
+      );
+    } else {
+      scoreKeeper.add(
+        Icon(
+          Icons.close,
+          color: Colors.red,
+        ),
+      );
+    }
+    setState(
+      () {
+        quizBrain.nextQuestion();
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,18 +93,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswer = quizBrain.getAnswerBool();
-
-                if (correctAnswer == true) {
-                  print('Right');
-                } else {
-                  print('False');
-                }
-                setState(
-                  () {
-                    quizBrain.nextQuestion();
-                  },
-                );
+                checkAnswer(true);
               },
             ),
           ),
@@ -101,23 +115,14 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswer = quizBrain.getAnswerBool();
-
-                if (correctAnswer == false) {
-                  print('Right');
-                } else {
-                  print('False');
-                }
-                //The user picked false.
-                setState(() {
-                  quizBrain.nextQuestion();
-                });
+                checkAnswer(false);
               },
             ),
           ),
         ),
-        // ignore: todo
-        //TODO: Add a Row here as your score keeper
+        Row(
+          children: scoreKeeper,
+        ),
       ],
     );
   }
