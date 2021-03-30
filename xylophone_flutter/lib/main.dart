@@ -12,7 +12,9 @@ class XylophoneApp extends StatelessWidget {
 
   Expanded buildKeys({Color color, int soundNumber}) {
     return Expanded(
+      // ignore: deprecated_member_use
       child: FlatButton(
+        child: Spacer(),
         color: color,
         onPressed: () {
           playSound(soundNumber);
