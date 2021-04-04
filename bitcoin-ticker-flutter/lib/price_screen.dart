@@ -11,6 +11,7 @@ class PriceScreen extends StatefulWidget {
 
 class _PriceScreenState extends State<PriceScreen> {
   String selectedCurrency = 'USD';
+  String finalSelectedCurrency;
 
   DropdownButton androidDropdown() {
     List<DropdownMenuItem<String>> dropDownItems = [];
@@ -30,6 +31,8 @@ class _PriceScreenState extends State<PriceScreen> {
         setState(() {
           selectedCurrency = value;
         });
+        getData();
+        finalSelectedCurrency = selectedCurrency;
       },
     );
   }
@@ -44,8 +47,11 @@ class _PriceScreenState extends State<PriceScreen> {
     // return pickerItems;
     return CupertinoPicker(
       itemExtent: 32.0,
-      onSelectedItemChanged: (selectedItem) {
-        print(selectedItem);
+      onSelectedItemChanged: (selectedCurrency) {
+        print(selectedCurrency);
+        finalSelectedCurrency = currenciesList[selectedCurrency];
+        print(finalSelectedCurrency);
+        getData();
       },
       children: pickerItems,
     );
@@ -55,7 +61,9 @@ class _PriceScreenState extends State<PriceScreen> {
   void getData() async {
     try {
       PriceDetector priceDetector = PriceDetector();
-      double allValues = await priceDetector.getPrice();
+
+      double allValues =
+          await priceDetector.getPrice(finalSelectedCurrency.toString());
       setState(() {
         btcValue = allValues.toStringAsFixed(0);
       });
@@ -71,6 +79,7 @@ class _PriceScreenState extends State<PriceScreen> {
   }
 
   Widget build(BuildContext context) {
+    print(selectedCurrency);
     return Scaffold(
       // PriceDetector.getPrice
       appBar: AppBar(
@@ -106,7 +115,7 @@ class _PriceScreenState extends State<PriceScreen> {
             alignment: Alignment.center,
             padding: EdgeInsets.only(bottom: 30.0),
             color: Colors.lightBlue,
-            child: Platform.isIOS ? cupertinoIosPicker() : androidDropdown(),
+            child: Platform.isIOS ? androidDropdown() : cupertinoIosPicker(),
           ),
         ],
       ),
