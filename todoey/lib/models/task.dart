@@ -5,7 +5,7 @@ class Task {
 
   Task({this.isDone = false, this.name = '', this.checkBoxCallBack});
 
-  void toggleTask() {
+  void toggleDone() {
     isDone = !isDone;
   }
 }
